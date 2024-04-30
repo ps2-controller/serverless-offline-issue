@@ -1,0 +1,45 @@
+org: angara94dev
+service: serverless-offline-issue
+
+useDotenv: true
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: 'dev'
+  region: us-east-1
+  profile: default
+  environment:
+  iam:
+package:
+  individually: true
+  excludeDevDependencies: true
+  exclude:
+    - node_modules/aws-sdk/** # Exclude AWS SDK as it's already available in the Lambda environment
+    - '**/*.js.map'
+custom:
+  serverless-offline:
+  webpack:    
+    webpackConfig: './webpack.config.cjs'   
+    packager: 'npm'    
+    includeModules:      
+      forceExclude:        
+        - aws-sdk
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+functions:
+  ping:
+    name: ${self:service}-${self:provider.stage}-ping
+    handler: src/ping/ping.router
+    timeout: 30
+    events:
+      - http:
+          path: 'v0/ping'
+          method: any
+          cors:
+            origins:
+              - '*'  
+            headers:
+              - '*'  
+resources:
