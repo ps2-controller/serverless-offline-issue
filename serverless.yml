@@ -25,14 +25,14 @@ custom:
       forceExclude:        
         - aws-sdk
 plugins:
-  # - serverless-webpack # comment out to use without webpack
+  - serverless-webpack # comment out to use without webpack
   - serverless-offline
 
 functions:
   ping:
     name: ${self:service}-${self:provider.stage}-ping
-    # handler: src/ping/ping.router # comment out to use without webpack
-    handler: dist/src/ping/ping.router # comment out to use with webpack
+    handler: src/ping/ping.router # comment out to use without webpack
+    # handler: dist/src/ping/ping.router # comment out to use with webpack
     timeout: 30
     events:
       - http:
