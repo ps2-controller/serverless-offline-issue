@@ -26,7 +26,7 @@ const app = createApi({ version: 'v0.0', base: 'v0' });
   app.post('/ping', (req: Request,res: Response) => {
     // Send the response
 
-    console.log('RUN - 1')
+    console.log('RUN - 4')
 
     res.status(200).json({
       status: 'ok',

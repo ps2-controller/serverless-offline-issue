@@ -14,7 +14,7 @@ package:
   individually: true
   excludeDevDependencies: true
   exclude:
-    - node_modules/aws-sdk/** # Exclude AWS SDK as it's already available in the Lambda environment
+    - node_modules/aws-sdk/**
     - '**/*.js.map'
 custom:
   serverless-offline:
@@ -25,13 +25,14 @@ custom:
       forceExclude:        
         - aws-sdk
 plugins:
-  - serverless-webpack
+  # - serverless-webpack # comment out to use without webpack
   - serverless-offline
 
 functions:
   ping:
     name: ${self:service}-${self:provider.stage}-ping
-    handler: src/ping/ping.router
+    # handler: src/ping/ping.router # comment out to use without webpack
+    handler: dist/src/ping/ping.router # comment out to use with webpack
     timeout: 30
     events:
       - http:

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Ref here: https://github.com/dherault/serverless-offline/issues/864#issuecomment-2016577082",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "sls offline start --reloadHandler"
